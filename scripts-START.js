@@ -1,4 +1,8 @@
-Listners.add('.timer__button', 'click', twentySecondsCountdown);
+// console.log(select(".timer__button[data-time='300']")); To select one element whit a data type
+
+Listners.add('.timer__button[data-time="20"]', 'click', twentySecondsCountdown);
+Listners.add('.timer__button[data-time="300"]', 'click', work);
+
 
 var Timer;
 var timeInSeconds;
@@ -8,6 +12,19 @@ var Countdown;
 var remainingTime;
 
 var NumberConverter;
+
+function work() {
+  timeInSeconds = 5 * 60;
+  remainingTime = timeInSeconds;
+
+  var sec = Countdown.Seconds();
+  var min = Countdown.Minuuts();
+
+  getTimeWhenTimerIsDone();
+
+  Countdown.placeTime(min, sec);
+  Timer.start();
+}
 
 function twentySecondsCountdown() {
   timeInSeconds = 20;
@@ -67,7 +84,8 @@ function twentySecondsCountdown() {
       }
 
       else {
-        var seconds = remainingTime - seconds;
+        var seconds = remainingTime - (minuuts * 60);
+
         return(seconds);
       }
     },
