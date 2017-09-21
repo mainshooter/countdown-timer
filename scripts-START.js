@@ -70,30 +70,24 @@ function twentySecondsCountdown() {
       }
     },
     placeTime: function(minuuts, seconds) {
-      minuuts = NumberConverter.didgets('' + minuuts + '');
-      seconds = NumberConverter.didgets('' + seconds + '');
+      minuuts = toTwoDidgets('' + minuuts + '');
+      seconds = toTwoDidgets('' + seconds + '');
 
       select(".display__time-left").innerHTML = minuuts + ":" + seconds;
     }
   }
 })();
 
+function toTwoDidgets(number) {
+  var numberArray = number.split('');
+  if (numberArray.length != 2) {
+    numberArray.unshift('0');
+    var string = numberArray.join();
 
-(function() {
-  NumberConverter = {
-    didgets: function(number) {
-
-      var numberArray = number.split('');
-      if (numberArray.length != 2) {
-        numberArray.unshift('0');
-        var string = numberArray.join();
-
-        var newString = string.replace(',', '');
-        return(newString);
-      }
-      else {
-        return(number);
-      }
-    }
+    var newString = string.replace(',', '');
+    return(newString);
   }
-})();
+  else {
+    return(number);
+  }
+}
