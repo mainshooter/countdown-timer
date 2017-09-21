@@ -14,6 +14,7 @@ var remainingTime;
 var NumberConverter;
 
 function work() {
+  Timer.stop();
   timeInSeconds = 5 * 60;
   remainingTime = timeInSeconds;
 
@@ -27,6 +28,7 @@ function work() {
 }
 
 function twentySecondsCountdown() {
+  Timer.stop();
   timeInSeconds = 20;
   remainingTime = timeInSeconds;
 
