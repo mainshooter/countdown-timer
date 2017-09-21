@@ -4,8 +4,10 @@ Listners.add('.timer__button[data-time="20"]', 'click', twentySecondsCountdown);
 Listners.add('.timer__button[data-time="300"]', 'click', work);
 Listners.add('.timer__button[data-time="900"]', 'click', quick);
 Listners.add('.timer__button[data-time="1200"]', 'click', snack);
-Listners.add('.timer__button[data-time="3600"]', 'click', lunch);
+// Listners.add('input[name="minutes"]', 'keypress', custom, this);
 
+KeyDetector.enable();
+KeyDetector.setKeyPressReturnFunction(custom);
 
 var Timer;
 var timeInSeconds;
@@ -15,6 +17,27 @@ var Countdown;
 var remainingTime;
 
 var NumberConverter;
+
+function custom(keypress) {
+  if (keypress[0] == 13) {
+    var timeInMinuuts = select('input[name="minutes"]').value;
+    timeInMinuuts = parseInt(timeInMinuuts);
+    if (timeInMinuuts > 0) {
+      Timer.stop();
+      timeInSeconds = timeInMinuuts * 60;
+      remainingTime = timeInSeconds;
+
+      var sec = Countdown.Seconds();
+      var min = Countdown.Minuuts();
+
+      getTimeWhenTimerIsDone();
+
+      Countdown.placeTime(min, sec);
+      Timer.start();
+      select('input[name="minutes"]').value = '';
+    }
+  }
+}
 
 function lunch() {
   Timer.stop();
