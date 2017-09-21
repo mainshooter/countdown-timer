@@ -2,6 +2,9 @@
 
 Listners.add('.timer__button[data-time="20"]', 'click', twentySecondsCountdown);
 Listners.add('.timer__button[data-time="300"]', 'click', work);
+Listners.add('.timer__button[data-time="900"]', 'click', quick);
+Listners.add('.timer__button[data-time="1200"]', 'click', snack);
+Listners.add('.timer__button[data-time="3600"]', 'click', lunch);
 
 
 var Timer;
@@ -12,6 +15,48 @@ var Countdown;
 var remainingTime;
 
 var NumberConverter;
+
+function lunch() {
+  Timer.stop();
+  timeInSeconds = 60 * 60;
+  remainingTime = timeInSeconds;
+
+  var sec = Countdown.Seconds();
+  var min = Countdown.Minuuts();
+
+  getTimeWhenTimerIsDone();
+
+  Countdown.placeTime(min, sec);
+  Timer.start();
+}
+
+function snack() {
+  Timer.stop();
+  timeInSeconds = 20 * 60;
+  remainingTime = timeInSeconds;
+
+  var sec = Countdown.Seconds();
+  var min = Countdown.Minuuts();
+
+  getTimeWhenTimerIsDone();
+
+  Countdown.placeTime(min, sec);
+  Timer.start();
+}
+
+function quick() {
+  Timer.stop();
+  timeInSeconds = 15 * 60;
+  remainingTime = timeInSeconds;
+
+  var sec = Countdown.Seconds();
+  var min = Countdown.Minuuts();
+
+  getTimeWhenTimerIsDone();
+
+  Countdown.placeTime(min, sec);
+  Timer.start();
+}
 
 function work() {
   Timer.stop();
