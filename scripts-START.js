@@ -116,6 +116,9 @@ function getTimeWhenTimerIsDone() {
   var doneHour = timeDone.getHours();
   var doneMinuuts = timeDone.getMinutes();
 
+  doneHour = toTwoDidgets('' + doneHour + '');
+  doneMinuuts = toTwoDidgets('' + doneMinuuts + '');
+
   select(".display__end-time").innerHTML = "We zijn klaar om: " + doneHour + ":" + doneMinuuts;
 }
 
