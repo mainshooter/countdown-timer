@@ -16,6 +16,8 @@ function twentySecondsCountdown() {
   var sec = Countdown.Seconds();
   var min = Countdown.Minuuts();
 
+  getTimeWhenTimerIsDone();
+
   Countdown.placeTime(min, sec);
   Timer.start();
 }
@@ -69,6 +71,7 @@ function twentySecondsCountdown() {
         return(seconds);
       }
     },
+
     placeTime: function(minuuts, seconds) {
       minuuts = toTwoDidgets('' + minuuts + '');
       seconds = toTwoDidgets('' + seconds + '');
@@ -78,6 +81,29 @@ function twentySecondsCountdown() {
   }
 })();
 
+/**
+ * To get and place when the timer is done
+ */
+function getTimeWhenTimerIsDone() {
+  var time = timeInSeconds;
+  var date = Date.now();
+
+  var timeNowInSeconds = date / 1000;
+  var futureTime = (timeNowInSeconds + timeInSeconds) * 1000;
+
+  var timeDone = new Date(futureTime);
+
+  var doneHour = timeDone.getHours();
+  var doneMinuuts = timeDone.getMinutes();
+
+  select(".display__end-time").innerHTML = "We zijn klaar om: " + doneHour + ":" + doneMinuuts;
+}
+
+/**
+ * Parse a number to 2 didgets and returns it as a string
+ * @param  {[int]} number [The number we want to parse]
+ * @return {[string]}        [The parsed 2 didgets number]
+ */
 function toTwoDidgets(number) {
   var numberArray = number.split('');
   if (numberArray.length != 2) {
