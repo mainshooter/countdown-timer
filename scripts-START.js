@@ -4,6 +4,7 @@ Listners.add('.timer__button[data-time="20"]', 'click', twentySecondsCountdown);
 Listners.add('.timer__button[data-time="300"]', 'click', work);
 Listners.add('.timer__button[data-time="900"]', 'click', quick);
 Listners.add('.timer__button[data-time="1200"]', 'click', snack);
+Listners.add('.timer__button[data-time="3600"]', 'click', lunch);
 // Listners.add('input[name="minutes"]', 'keypress', custom, this);
 
 KeyDetector.enable();
@@ -17,6 +18,20 @@ var Countdown;
 var remainingTime;
 
 var NumberConverter;
+
+function lunch() {
+  Timer.stop();
+  timeInSeconds = 60 * 60;
+  remainingTime = timeInSeconds;
+
+  var sec = Countdown.Seconds();
+  var min = Countdown.Minuuts();
+
+  getTimeWhenTimerIsDone();
+
+  Countdown.placeTime(min, sec);
+  Timer.start();
+}
 
 function custom(keypress) {
   if (keypress[0] == 13) {
